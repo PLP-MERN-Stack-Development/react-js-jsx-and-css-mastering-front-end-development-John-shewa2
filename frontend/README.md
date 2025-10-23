@@ -25,7 +25,6 @@ A small React (Vite) frontend demonstrating:
 ## Setup (Windows)
 Open a terminal in the frontend folder:
 ```bash
-cd "c:\Users\yohannessh\Desktop\react-js-jsx-and-css-mastering-front-end-development-John-shewa2\frontend"
 npm install
 ```
 
