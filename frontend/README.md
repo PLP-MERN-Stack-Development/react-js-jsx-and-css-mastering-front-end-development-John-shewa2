@@ -1,18 +1,67 @@
-# React + Vite
+# Frontend — React + Tailwind (Week 3)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Short project README for the frontend app included in this repository.
 
-Currently, two official plugins are available:
+## Overview
+A small React (Vite) frontend demonstrating:
+- Reusable UI components (Button, Card, Navbar, Footer)
+- Task manager with localStorage persistence (custom hook)
+- Theme management via Context (light / dark)
+- Posts page fetching from JSONPlaceholder with search, pagination, infinite scroll
+- Tailwind CSS for styling
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Folder structure
+- src/
+  - components/ — Button, Card, Navbar, Footer, Taskmanager
+  - context/ — ThemeContext (theme provider)
+  - hooks/ — useLocalStorage.js (custom hook)
+  - pages/ — Posts.jsx (API demo)
+  - App.jsx, main.jsx, index.css
 
-## React Compiler
+## Requirements
+- Node.js 16+ (or compatible)
+- npm (or yarn/pnpm)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Setup (Windows)
+Open a terminal in the frontend folder:
+```bash
+cd "c:\Users\yohannessh\Desktop\react-js-jsx-and-css-mastering-front-end-development-John-shewa2\frontend"
+npm install
+```
 
-Note: This will impact Vite dev & build performances.
+## Development
+Start the dev server:
+```bash
+npm run dev
+```
+Open the URL shown by Vite (usually http://localhost:5173).
 
-## Expanding the ESLint configuration
+## Key scripts (package.json)
+- `npm run dev` — start dev server
+- `npm run build` — build production bundle
+- `npm run preview` — preview built app
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Important files to inspect / edit
+- `src/context/ThemeContext.jsx` — theme provider (adds/removes `.dark` on `<html>`)  
+- `tailwind.config.js` — must contain `darkMode: 'class'` and appropriate `content` paths  
+- `src/index.css` — must include Tailwind directives:
+  ``` @import "tailwindcss";
+  ```
+- `src/hooks/useLocalStorage.js` — custom hook that persists tasks to localStorage  
+- `src/components/Taskmanager.jsx` — UI for tasks; uses the hook  
+- `src/pages/Posts.jsx` — fetch + display posts (loading, error, pagination, search)
+
+## How theme works
+- App is wrapped with `ThemeProvider` in `main.jsx`.
+- Toggling in `Navbar` calls `toggleTheme`, which updates the provider state and localStorage and applies/removes `.dark` on `<html>`.
+- Components should use Tailwind `dark:` utilities (e.g., `bg-white dark:bg-gray-900`) or read `ThemeContext` if conditional logic is needed.
+
+
+## Troubleshooting
+- If dark mode toggles but UI doesn't change: ensure Tailwind is installed, `tailwind.config.js` has `darkMode: 'class'`, `index.css` includes `@tailwind` directives, and dev server restarted after changes.
+- If `prop-types` import errors occur: run `npm install prop-types` in the frontend folder.
+
+## Notes
+- This README is minimal. Extend with project-specific instructions, environment variables, CI commands, and design notes as needed.
+
+This front end app was designed for learning purposes.
